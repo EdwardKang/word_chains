@@ -6,13 +6,12 @@ def load_dictionary()
 end
 
 def find_adjacent_words(word, dictionary)
-  #regexp_string = "...."
   dictionary.select do |dictionary_word|
-    match = 1
+    match = 0
     word.length.times do |index|
       match += 1 if word[index] == dictionary_word[index]
     end
-    match == word.length
+    match == word.length - 1 
   end
 end
 
@@ -48,13 +47,3 @@ def build_chain(visited_words, word)
   return [word] if visited_words[word] == true
   [word] + build_chain(visited_words, visited_words[word])
 end
-
-#current_words
-
-dictionary = load_dictionary()
-p find_chain("duck", "ruby", dictionary)
-# word = "ruse"
-# adjacent_words = find_adjacent_words(word, dictionary)
-# adjacent_words = dictionary.select { |word1| word1.length == word.length }
-#
-# puts find_adjacent_words(word, adjacent_words)
